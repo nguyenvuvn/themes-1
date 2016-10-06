@@ -1,4 +1,4 @@
 Laravel 5 Themes
 ==============
 
-Official documentation is located [here](http://sky.pingpong-labs.com/docs/2.0/themes)
+Official documentation is located [here](http://laravel5pingpong.blogspot.fr/2016/08/laravel-5-themes.html)
