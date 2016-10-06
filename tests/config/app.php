@@ -178,6 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		CVEPDB\Themes\App\Providers\ThemesServiceProvider::class,
+
     ],
 
     /*

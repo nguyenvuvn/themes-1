@@ -1,14 +1,17 @@
-<?php
-
-namespace Pingpong\Themes\Console;
+<?php namespace CVEPDB\Themes\Console;
 
 use Illuminate\Console\Command;
 use Pingpong\Support\Stub;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * Class MakeCommand
+ * @package CVEPDB\Themes\Console
+ */
 class MakeCommand extends Command
 {
+
     /**
      * Command name.
      *
@@ -84,4 +87,5 @@ class MakeCommand extends Command
             ['force', 'f', InputOption::VALUE_NONE, 'Force creation if theme already exists.'],
         ];
     }
+
 }

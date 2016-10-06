@@ -1,11 +1,14 @@
-<?php
-
-namespace Pingpong\Themes\Console;
+<?php namespace CVEPDB\Themes\Console;
 
 use Illuminate\Console\Command;
 
+/**
+ * Class CacheCommand
+ * @package CVEPDB\Themes\Console
+ */
 class CacheCommand extends Command
 {
+
     /**
      * Command name.
      *
@@ -48,4 +51,5 @@ class CacheCommand extends Command
 
         $this->info('Themes cached successfully!');
     }
+
 }

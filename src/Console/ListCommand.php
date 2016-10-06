@@ -1,11 +1,14 @@
-<?php
-
-namespace Pingpong\Themes\Console;
+<?php namespace CVEPDB\Themes\Console;
 
 use Illuminate\Console\Command;
 
+/**
+ * Class ListCommand
+ * @package CVEPDB\Themes\Console
+ */
 class ListCommand extends Command
 {
+
     /**
      * Command name.
      *
@@ -50,4 +53,5 @@ class ListCommand extends Command
 
         return $rows;
     }
+
 }

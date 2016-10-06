@@ -1,13 +1,16 @@
-<?php
-
-namespace Pingpong\Themes\Console;
+<?php namespace CVEPDB\Themes\Console;
 
 use Illuminate\Console\Command;
-use Pingpong\Themes\Theme;
 use Symfony\Component\Console\Input\InputArgument;
+use CVEPDB\Themes\Domain\Themes\Themes\Theme;
 
+/**
+ * Class PublishCommand
+ * @package CVEPDB\Themes\Console
+ */
 class PublishCommand extends Command
 {
+
     /**
      * Command name.
      *
@@ -51,14 +54,17 @@ class PublishCommand extends Command
      */
     protected function publish($theme)
     {
-        $theme = $theme instanceof Theme ? $theme : $this->laravel['themes']->find($theme);
+        $theme = $theme instanceof Theme
+			? $theme
+			: $this->laravel['themes']->find($theme);
 
         if (!is_null($theme)) {
             $assetsPath = $theme->getPath('assets');
 
             $destinationPath = public_path('themes/'.$theme->getLowerName());
 
-            $this->laravel['files']->copyDirectory($assetsPath, $destinationPath);
+            $this->laravel['files']
+				->copyDirectory($assetsPath, $destinationPath);
 
             $this->line("Asset published from: <info>{$theme->getName()}</info>");
         }
@@ -75,4 +81,5 @@ class PublishCommand extends Command
             ['name', InputArgument::OPTIONAL, 'The name of the theme being used.'],
         ];
     }
+
 }
