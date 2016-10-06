@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Testing\TestCase;
-use \Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use CVEPDB\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 use CVEPDB\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
 
@@ -169,7 +170,6 @@ class ThemeTest extends TestCase
 
 	public function testCommandsThemePublish()
 	{
-
 		Artisan::call('theme:make', ['name' => 'themetest1', '--force' => true]);
 
 		$resultAsText = Artisan::output();
@@ -187,6 +187,15 @@ class ThemeTest extends TestCase
 			"Asset published from: theme1\nAsset published from: theme2\nAsset published from: themetest1\n",
 			$resultAsText
 		);
+	}
+
+	public function tearDown()
+	{
+		// Dev only
+//		File::deleteDirectory(base_path('public'));
+//		File::deleteDirectory(base_path('themes/themetest1'));
+
+		parent::tearDown();
 	}
 
 	private function createRepository()
