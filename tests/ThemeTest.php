@@ -77,7 +77,8 @@ class ThemeTest extends TestCase
 		$this->repository = $this->createRepository();
 		$result = $this->repository->getThemePath('theme1');
 
-		$expected = $this->app['config']->get('themes.path') . DIRECTORY_SEPARATOR . 'theme1';
+		$expected = $this->app['config']
+				->get('themes.path') . DIRECTORY_SEPARATOR . 'theme1';
 
 		$this->assertEquals($expected, $result);
 	}
@@ -132,29 +133,37 @@ class ThemeTest extends TestCase
 		$this->assertSame($expected, array_column(json_decode($result, true), 'name'));
 	}
 
-//	public function testCommandsThemeCache()
-//	{
-//		Artisan::call('theme:cache', []);
-//
-//		$resultAsText = Artisan::output();
-//
-//		$this->assertEquals(
-//			"Theme cache cleared!\nThemes cached successfully!\n",
-//			$resultAsText
-//		);
-//	}
+	public function testCommandsThemeCache()
+	{
+		Artisan::call('theme:cache', []);
 
-//	public function testCommandsThemeList()
-//	{
-//		Artisan::call('theme:list', []);
-//
-//		$resultAsText = Artisan::output();
-//
-//		$this->assertEquals(
-//			"Theme cache cleared!\nThemes cached successfully!\n",
-//			$resultAsText
-//		);
-//	}
+		$resultAsText = Artisan::output();
+
+		$this->assertEquals(
+			"Theme cache cleared!\nThemes cached successfully!\n",
+			$resultAsText
+		);
+	}
+
+	public function testCommandsThemeList()
+	{
+		Artisan::call('theme:list', []);
+
+		$resultAsText = Artisan::output();
+
+		$this->assertTrue(
+			strpos(
+				$resultAsText,
+				base_path('themes/theme2')
+			) > 0
+		);
+		$this->assertTrue(
+			strpos(
+				$resultAsText,
+				base_path('themes/theme2')
+			) > 0
+		);
+	}
 
 	public function testCommandsThemeMake()
 	{
