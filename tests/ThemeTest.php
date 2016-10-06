@@ -167,6 +167,28 @@ class ThemeTest extends TestCase
 		);
 	}
 
+	public function testCommandsThemePublish()
+	{
+
+		Artisan::call('theme:make', ['name' => 'themetest1', '--force' => true]);
+
+		$resultAsText = Artisan::output();
+
+		$this->assertEquals(
+			"Theme created successfully.\n",
+			$resultAsText
+		);
+
+		Artisan::call('theme:publish', []);
+
+		$resultAsText = Artisan::output();
+
+		$this->assertEquals(
+			"Asset published from: theme1\nAsset published from: theme2\nAsset published from: themetest1\n",
+			$resultAsText
+		);
+	}
+
 	private function createRepository()
 	{
 		return new ThemesRepository(
