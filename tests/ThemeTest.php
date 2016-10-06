@@ -45,7 +45,10 @@ class ThemeTest extends TestCase
         $this->repository = $this->createRepository();
         $test1 = $this->repository->find('theme1');
 
-        $this->assertInstanceOf('CVEPDB\Themes\Domain\Themes\Themes\Theme', $test1);
+        $this->assertInstanceOf(
+        	'CVEPDB\Themes\Domain\Themes\Themes\Theme',
+			$test1
+		);
     }
 
     public function test_set_get_theme()
