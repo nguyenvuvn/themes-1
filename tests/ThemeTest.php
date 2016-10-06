@@ -34,7 +34,9 @@ class ThemeTest extends TestCase
 				],
 				'bower' => [
 					'binary_path' => '/../vendor/bin',
-					'is_active'   => true
+					// xABE Todo : https://travis-ci.org/CavaENCOREparlerdebits/themes/jobs/165647202
+					// xABE Todo : travis-ci.org / Exception: You have reached GitHub hour limit! Actual limit is: 60
+					'is_active'   => false
 				],
 			]
 		]);
