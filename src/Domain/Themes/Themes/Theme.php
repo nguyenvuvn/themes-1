@@ -1,9 +1,11 @@
-<?php
-
-namespace Pingpong\Themes;
+<?php namespace CVEPDB\Themes\Domain\Themes\Themes;
 
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * Class Theme
+ * @package Pingpong\Themes
+ */
 class Theme implements Arrayable
 {
     /**

@@ -1,11 +1,14 @@
-<?php
-
-namespace Pingpong\Themes;
+<?php namespace CVEPDB\Themes\Domain\Themes\Finder\Repositories;
 
 use Pingpong\Support\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
+use CVEPDB\Themes\Domain\Themes\Themes\Theme;
 
-class Finder
+/**
+ * Class FinderRepository
+ * @package CVEPDB\Themes\Domain\Themes\Finder\Repositories
+ */
+class FinderRepository
 {
     /**
      * The symfony finder instance.

@@ -1,8 +1,12 @@
 <?php
 
-use Pingpong\Themes\Finder;
-use Pingpong\Themes\Repository;
+use Illuminate\Foundation\Testing\TestCase;
+use CVEPDB\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
+use CVEPDB\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
 
+/**
+ * Class ThemeTest
+ */
 class ThemeTest extends TestCase
 {
     /**
@@ -41,7 +45,7 @@ class ThemeTest extends TestCase
         $this->repository = $this->createRepository();
         $test1 = $this->repository->find('theme1');
 
-        $this->assertInstanceOf('Pingpong\Themes\Theme', $test1);
+        $this->assertInstanceOf('CVEPDB\Themes\Domain\Themes\Themes\Theme', $test1);
     }
 
     public function test_set_get_theme()
@@ -123,12 +127,24 @@ class ThemeTest extends TestCase
 
     private function createRepository()
     {
-        return new Repository(
-            new Finder(),
+        return new ThemesRepository(
+            new FinderRepository(),
             $this->app['config'],
             $this->app['view'],
             $this->app['translator'],
             $this->app['cache.store']
         );
     }
+
+	/**
+	 *
+	 */
+	public function createApplication()
+	{
+		$app = require __DIR__ . '/bootstrap/app.php';
+
+		$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+		return $app;
+	}
 }

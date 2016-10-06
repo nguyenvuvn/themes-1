@@ -1,12 +1,15 @@
-<?php
-
-namespace Pingpong\Themes;
+<?php namespace CVEPDB\Themes\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\FileViewFinder;
 
+/**
+ * Class ThemesServiceProvider
+ * @package CVEPDB\Themes\App\Providers
+ */
 class ThemesServiceProvider extends ServiceProvider
 {
+
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -112,4 +115,5 @@ class ThemesServiceProvider extends ServiceProvider
     {
         return array('themes');
     }
+
 }
