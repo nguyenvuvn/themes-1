@@ -31,7 +31,11 @@ class ThemeTest extends TestCase
 					'enabled'  => false,
 					'key'      => 'pingpong.themes.for.testing',
 					'lifetime' => 1,
-				]
+				],
+				'bower' => [
+					'binary_path' => '/../vendor/bin',
+					'is_active'   => true
+				],
 			]
 		]);
 	}
@@ -192,9 +196,17 @@ class ThemeTest extends TestCase
 
 		$resultAsText = Artisan::output();
 
-		$this->assertEquals(
-			"Asset published from: theme1\nAsset published from: theme2\nAsset published from: themetest1\n",
-			$resultAsText
+		$this->assertTrue(
+			strpos(
+				$resultAsText,
+				"Asset published from: theme1\n"
+			) > 0
+		);
+		$this->assertTrue(
+			strpos(
+				$resultAsText,
+				"Asset published from: theme2\n"
+			) > 0
 		);
 	}
 

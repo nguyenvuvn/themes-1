@@ -1,0 +1,20 @@
+{
+  "name": "theme1",
+  "authors": [
+    "Antoine Benevaut <antoine@cvepdb.fr>"
+  ],
+  "description": "test theme1 with bower packages",
+  "main": "",
+  "license": "GPL-3",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

@@ -33,8 +33,10 @@ class PublishCommand extends Command
         if ($theme = $this->argument('name')) {
             $this->publish($theme);
         }
-
-        $this->publishAll();
+		else
+		{
+			$this->publishAll();
+		}
     }
 
     /**
@@ -61,6 +63,11 @@ class PublishCommand extends Command
         if (!is_null($theme)) {
             $assetsPath = $theme->getPath('assets');
 
+			if (config('themes.bower.is_active'))
+			{
+				$this->installBowerDependencies($assetsPath);
+			}
+
             $destinationPath = public_path('themes/'.$theme->getLowerName());
 
             $this->laravel['files']
@@ -69,6 +76,36 @@ class PublishCommand extends Command
             $this->line("Asset published from: <info>{$theme->getName()}</info>");
         }
     }
+
+	/**
+	 *
+	 */
+	protected function installBowerDependencies($assetsPath)
+	{
+		if (file_exists($assetsPath . '/bower.json'))
+		{
+			$bower = base_path(config('themes.bower.binary_path') . '/bowerphp');
+
+			$this->progressbar = $this->output->createProgressBar(1);
+			$this->progressbar->setFormat("%message%\n %current%/%max% [%bar%] %percent:3s%%");
+
+			$output = array();
+			$return_var = -1;
+			$command = "$bower -vvvv --working-dir=\"$assetsPath\" install";
+			$this->line("Bower running : <info>{$command}</info>");
+			$last_line = exec($command, $output, $return_var);
+
+			$this->progressbar->setMessage($command);
+			$this->progressbar->advance();
+			$this->progressbar->finish();
+
+			if ($return_var !== 0)
+			{
+				// fail or other exceptions
+				throw new \Exception(implode("\n", $output));
+			}
+		}
+	}
 
     /**
      * Get the console command arguments.
