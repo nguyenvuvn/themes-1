@@ -21,7 +21,7 @@
     "illuminate/translation": "5.3.16",
     "illuminate/view": "5.3.16",
     "illuminate/config": "5.3.16",
-    "pingpong/support": "dev-master",
+    "cvepdb/laravel-support": "2.3.*",
     "beelab/bowerphp": "^0.4.0"
   },
   "require-dev": {
