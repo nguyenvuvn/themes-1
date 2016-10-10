@@ -16,11 +16,11 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "illuminate/support": "5.3.4",
-    "illuminate/filesystem": "5.3.16",
-    "illuminate/translation": "5.3.16",
-    "illuminate/view": "5.3.16",
-    "illuminate/config": "5.3.16",
+    "illuminate/support": "5.3.*",
+    "illuminate/filesystem": "5.3.*",
+    "illuminate/translation": "5.3.*",
+    "illuminate/view": "5.3.*",
+    "illuminate/config": "5.3.*",
     "cvepdb/laravel-support": "2.3.*",
     "beelab/bowerphp": "^0.4.0"
   },
