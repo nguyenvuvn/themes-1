@@ -1,151 +1,144 @@
 <?php namespace ABENEVAUT\Themes\Domain\Themes\Finder\Repositories;
 
-use Pingpong\Support\Json;
+use ABENEVAUT\Support\App\Services\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
 use ABENEVAUT\Themes\Domain\Themes\Themes\Theme;
 
-/**
- * Class FinderRepository
- * @package ABENEVAUT\Themes\Domain\Themes\Finder\Repositories
- */
 class FinderRepository
 {
-    /**
-     * The symfony finder instance.
-     *
-     * @var SymfonyFinder
-     */
-    protected $finder;
 
-    /**
-     * The array of themes.
-     *
-     * @var array
-     */
-    protected $themes = [];
+	/**
+	 * The symfony finder instance.
+	 *
+	 * @var SymfonyFinder
+	 */
+	protected $finder;
 
-    /**
-     * Determinte whether the theme has been scanned or not.
-     *
-     * @var bool
-     */
-    protected $scanned = false;
+	/**
+	 * The array of themes.
+	 *
+	 * @var array
+	 */
+	protected $themes = [];
 
-    /**
-     * The scanned path.
-     *
-     * @var string
-     */
-    protected $path;
+	/**
+	 * Determinte whether the theme has been scanned or not.
+	 *
+	 * @var bool
+	 */
+	protected $scanned = false;
 
-    /**
-     * The filename of theme's identifier.
-     *
-     * @var string
-     */
-    const FILENAME = 'theme.json';
+	/**
+	 * The scanned path.
+	 *
+	 * @var string
+	 */
+	protected $path;
 
-    /**
-     * The constructor.
-     *
-     * @param $finder SymfonyFinder
-     */
-    public function __construct(SymfonyFinder $finder = null)
-    {
-        $this->finder = $finder ?: new SymfonyFinder();
-    }
+	/**
+	 * The filename of theme's identifier.
+	 *
+	 * @var string
+	 */
+	const FILENAME = 'theme.json';
 
-    /**
-     * Set path.
-     *
-     * @param string $path
-     *
-     * @return $this
-     */
-    public function setPath($path)
-    {
-        $this->path = $path;
+	/**
+	 * The constructor.
+	 *
+	 * @param $finder SymfonyFinder
+	 */
+	public function __construct(SymfonyFinder $finder = null) {
+		$this->finder = $finder ?: new SymfonyFinder();
+	}
 
-        return $this;
-    }
+	/**
+	 * Set path.
+	 *
+	 * @param string $path
+	 *
+	 * @return $this
+	 */
+	public function setPath($path) {
+		$this->path = $path;
 
-    /**
-     * Get path.
-     *
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->path;
-    }
+		return $this;
+	}
 
-    /**
-     * Find the specified theme by searching a 'theme.json' file as identifier.
-     *
-     * @param string $path
-     * @param string $filename
-     *
-     * @return $this
-     */
-    public function scan()
-    {
-        if ($this->scanned == true) {
-            return $this;
-        }
+	/**
+	 * Get path.
+	 *
+	 * @return string
+	 */
+	public function getPath() {
+		return $this->path;
+	}
 
-        if (is_dir($path = $this->getPath())) {
-            $found = $this->finder
-                ->in($path)
-                ->files()
-                ->name(self::FILENAME)
-                ->depth('== 1')
-                ->followLinks();
+	/**
+	 * Find the specified theme by searching a 'theme.json' file as identifier.
+	 *
+	 * @param string $path
+	 * @param string $filename
+	 *
+	 * @return $this
+	 */
+	public function scan() {
+		if ($this->scanned == true)
+		{
+			return $this;
+		}
 
-            foreach ($found as $file) {
-                $this->themes[] = new Theme($this->getInfo($file));
-            }
-        }
+		if (is_dir($path = $this->getPath()))
+		{
+			$found = $this->finder
+				->in($path)
+				->files()
+				->name(self::FILENAME)
+				->depth('== 1')
+				->followLinks();
 
-        $this->scanned = true;
+			foreach ($found as $file)
+			{
+				$this->themes[] = new Theme($this->getInfo($file));
+			}
+		}
 
-        return $this;
-    }
+		$this->scanned = true;
 
-    /**
-     * Get themes.
-     *
-     * @return array
-     */
-    public function getThemes()
-    {
-        return $this->themes;
-    }
+		return $this;
+	}
 
-    /**
-     * Find in path.
-     *
-     * @param string $path
-     *
-     * @return array
-     */
-    public function find($path)
-    {
-        return $this->setPath($path)->scan()->getThemes();
-    }
+	/**
+	 * Get themes.
+	 *
+	 * @return array
+	 */
+	public function getThemes() {
+		return $this->themes;
+	}
 
-    /**
-     * Get theme info from json file.
-     *
-     * @param \SplFileInfo $file
-     *
-     * @return array
-     */
-    protected function getInfo($file)
-    {
-        $attributes = Json::make($path = $file->getRealPath())->toArray();
+	/**
+	 * Find in path.
+	 *
+	 * @param string $path
+	 *
+	 * @return array
+	 */
+	public function find($path) {
+		return $this->setPath($path)->scan()->getThemes();
+	}
 
-        $attributes['path'] = dirname($path);
+	/**
+	 * Get theme info from json file.
+	 *
+	 * @param \SplFileInfo $file
+	 *
+	 * @return array
+	 */
+	protected function getInfo($file) {
+		$attributes = Json::make($path = $file->getRealPath())->toArray();
 
-        return $attributes;
-    }
+		$attributes['path'] = dirname($path);
+
+		return $attributes;
+	}
 }

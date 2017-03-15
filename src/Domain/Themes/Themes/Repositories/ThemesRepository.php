@@ -8,10 +8,6 @@ use Illuminate\Translation\Translator;
 use Illuminate\View\Factory;
 use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 
-/**
- * Class ThemesRepository
- * @package ABENEVAUT\Themes\Domain\Themes\Themes\Repositories
- */
 class ThemesRepository implements Arrayable
 {
 
@@ -74,8 +70,7 @@ class ThemesRepository implements Arrayable
 		Factory $views,
 		Translator $lang,
 		Cache $cache
-	)
-	{
+	) {
 		$this->finder = $finder;
 		$this->config = $config;
 		$this->lang = $lang;
@@ -86,8 +81,7 @@ class ThemesRepository implements Arrayable
 	/**
 	 * Register the namespaces.
 	 */
-	public function registerNamespaces()
-	{
+	public function registerNamespaces() {
 		foreach ($this->all() as $theme)
 		{
 			foreach (['views', 'lang'] as $hint)
@@ -106,8 +100,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return \ABENEVAUT\Themes\Domain\Themes\Themes\Theme|null
 	 */
-	public function find($search)
-	{
+	public function find($search) {
 		foreach ($this->all() as $theme)
 		{
 			if ($theme->getLowerName() == strtolower($search))
@@ -126,8 +119,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return null|string
 	 */
-	public function getThemePath($theme)
-	{
+	public function getThemePath($theme) {
 		return $this->getPath() . "/{$theme}";
 	}
 
@@ -136,8 +128,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	public function getCurrent()
-	{
+	public function getCurrent() {
 		return $this->current ?: $this->config->get('themes.default');
 	}
 
@@ -148,8 +139,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return $this
 	 */
-	public function setCurrent($current)
-	{
+	public function setCurrent($current) {
 		$this->current = $current;
 
 		return $this;
@@ -162,8 +152,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return $this
 	 */
-	public function set($theme)
-	{
+	public function set($theme) {
 		return $this->setCurrent($theme);
 	}
 
@@ -172,11 +161,10 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return array
 	 */
-	public function all()
-	{
+	public function all() {
 		if ($this->useCache())
 		{
-			return $this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function ()
+			return $this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function()
 			{
 				return $this->scan();
 			});
@@ -190,8 +178,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return array
 	 */
-	public function scan()
-	{
+	public function scan() {
 		return $this->finder->find($this->getPath());
 	}
 
@@ -200,8 +187,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return array
 	 */
-	public function getCached()
-	{
+	public function getCached() {
 		return $this->cache->get($this->getCacheKey(), []);
 	}
 
@@ -210,8 +196,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return bool
 	 */
-	public function useCache()
-	{
+	public function useCache() {
 		return $this->getCacheStatus() == true;
 	}
 
@@ -220,8 +205,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	public function getCacheKey()
-	{
+	public function getCacheKey() {
 		return $this->config->get('themes.cache.key');
 	}
 
@@ -230,8 +214,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return int
 	 */
-	public function getCacheLifetime()
-	{
+	public function getCacheLifetime() {
 		return $this->config->get('themes.cache.lifetime');
 	}
 
@@ -240,17 +223,15 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return bool
 	 */
-	public function getCacheStatus()
-	{
+	public function getCacheStatus() {
 		return $this->config->get('themes.cache.enabled');
 	}
 
 	/**
 	 * Cache the themes.
 	 */
-	public function cache()
-	{
-		$this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function ()
+	public function cache() {
+		$this->cache->remember($this->getCacheKey(), $this->getCacheLifetime(), function()
 		{
 			return $this->scan();
 		});
@@ -259,8 +240,7 @@ class ThemesRepository implements Arrayable
 	/**
 	 * Forget cached themes.
 	 */
-	public function forgetCache()
-	{
+	public function forgetCache() {
 		$this->cache->forget($this->getCacheKey());
 	}
 
@@ -269,9 +249,8 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return array
 	 */
-	public function toArray()
-	{
-		return array_map(function ($theme)
+	public function toArray() {
+		return array_map(function($theme)
 		{
 			return $theme->toArray();
 		}, $this->scan());
@@ -282,8 +261,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	public function toJson()
-	{
+	public function toJson() {
 		return json_encode($this->toArray());
 	}
 
@@ -294,8 +272,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return bool
 	 */
-	public function has($theme)
-	{
+	public function has($theme) {
 		return !is_null($this->find($theme));
 	}
 
@@ -306,8 +283,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return bool
 	 */
-	public function exists($theme)
-	{
+	public function exists($theme) {
 		return $this->has($theme);
 	}
 
@@ -318,8 +294,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return self
 	 */
-	public function setPath($path)
-	{
+	public function setPath($path) {
 		$this->path = $path;
 
 		return $this;
@@ -330,8 +305,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return mixed
 	 */
-	public function getPath()
-	{
+	public function getPath() {
 		return $this->path ?: $this->config->get('themes.path');
 	}
 
@@ -344,8 +318,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return mixed
 	 */
-	public function view($view, $data = array(), $mergeData = array())
-	{
+	public function view($view, $data = array(), $mergeData = array()) {
 		return $this->views->make($this->getThemeNamespace($view), $data, $mergeData);
 	}
 
@@ -357,8 +330,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return asset
 	 */
-	public function asset($asset, $secure = null)
-	{
+	public function asset($asset, $secure = null) {
 		return url('themes/' . $this->getCurrent() . '/' . $asset, null, $secure);
 	}
 
@@ -369,8 +341,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return asset
 	 */
-	public function secure_asset($asset)
-	{
+	public function secure_asset($asset) {
 		return $this->asset($asset, true);
 	}
 
@@ -379,8 +350,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @param null $theme
 	 */
-	public function registerViewLocation($theme = null)
-	{
+	public function registerViewLocation($theme = null) {
 		if (is_null($theme))
 		{
 			$theme = $this->getCurrent();
@@ -397,8 +367,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return mixed
 	 */
-	public function config($key, $default = null)
-	{
+	public function config($key, $default = null) {
 		if (Str::contains($key, '::'))
 		{
 			list($theme, $config) = explode('::', $key);
@@ -423,8 +392,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	public function lang($key, $replace = array(), $locale = null)
-	{
+	public function lang($key, $replace = array(), $locale = null) {
 		return $this->lang->get($this->getThemeNamespace($key), $replace, $locale);
 	}
 
@@ -435,8 +403,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	protected function getThemeNamespace($key)
-	{
+	protected function getThemeNamespace($key) {
 		return $this->getCurrent() . "::{$key}";
 	}
 
@@ -447,8 +414,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @return string
 	 */
-	public function getNamespace($key)
-	{
+	public function getNamespace($key) {
 		return $this->getThemeNamespace($key);
 	}
 
@@ -459,8 +425,7 @@ class ThemesRepository implements Arrayable
 	 * @param string|callable $callback
 	 * @param int|null        $priority
 	 */
-	public function composer($views, $callback, $priority = null)
-	{
+	public function composer($views, $callback, $priority = null) {
 		$theViews = [];
 
 		foreach ((array)$views as $view)

@@ -5,10 +5,6 @@ use Illuminate\View\FileViewFinder;
 use ABENEVAUT\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
 use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 
-/**
- * Class ThemesServiceProvider
- * @package ABENEVAUT\Themes\App\Providers
- */
 class ThemesServiceProvider extends ServiceProvider
 {
 
@@ -22,8 +18,7 @@ class ThemesServiceProvider extends ServiceProvider
 	/**
 	 * Bootstrap the application events.
 	 */
-	public function boot()
-	{
+	public function boot() {
 		$this->registerConfig();
 
 		$this->registerNamespaces();
@@ -34,16 +29,14 @@ class ThemesServiceProvider extends ServiceProvider
 	/**
 	 * Register the helpers file.
 	 */
-	public function registerHelpers()
-	{
+	public function registerHelpers() {
 		require __DIR__ . '/../Services/helpers.php';
 	}
 
 	/**
 	 * Register configuration file.
 	 */
-	protected function registerConfig()
-	{
+	protected function registerConfig() {
 		$configPath = __DIR__ . '/../../config/config.php';
 
 		$this->publishes([$configPath => config_path('themes.php')]);
@@ -54,17 +47,15 @@ class ThemesServiceProvider extends ServiceProvider
 	/**
 	 * Register the themes namespaces.
 	 */
-	protected function registerNamespaces()
-	{
+	protected function registerNamespaces() {
 		$this->app['themes']->registerNamespaces();
 	}
 
 	/**
 	 * Register the service provider.
 	 */
-	public function register()
-	{
-		$this->app['themes'] = $this->app->share(function ($app)
+	public function register() {
+		$this->app['themes'] = $this->app->share(function($app)
 		{
 			return new ThemesRepository(
 				new FinderRepository(),
@@ -83,9 +74,8 @@ class ThemesServiceProvider extends ServiceProvider
 	/**
 	 * Override view path.
 	 */
-	protected function overrideViewPath()
-	{
-		$this->app->bind('view.finder', function ($app)
+	protected function overrideViewPath() {
+		$this->app->bind('view.finder', function($app)
 		{
 			$defaultThemePath = $app['config']['themes.path']
 				. '/' . $app['config']['themes.default']
@@ -107,8 +97,7 @@ class ThemesServiceProvider extends ServiceProvider
 	/**
 	 * Register commands.
 	 */
-	protected function registerCommands()
-	{
+	protected function registerCommands() {
 		$this->commands('ABENEVAUT\Themes\Console\MakeCommand');
 		$this->commands('ABENEVAUT\Themes\Console\CacheCommand');
 		$this->commands('ABENEVAUT\Themes\Console\ListCommand');
@@ -120,9 +109,7 @@ class ThemesServiceProvider extends ServiceProvider
 	 *
 	 * @return array
 	 */
-	public function provides()
-	{
-		return array('themes');
+	public function provides() {
+		return ['themes'];
 	}
-
 }

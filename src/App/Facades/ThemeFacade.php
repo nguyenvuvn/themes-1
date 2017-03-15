@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Facade;
 
-/**
- * Class ThemeFacade
- * @package ABENEVAUT\Themes\App\Facades
- */
 class ThemeFacade extends Facade
 {
 
@@ -18,5 +14,4 @@ class ThemeFacade extends Facade
     {
         return 'themes';
     }
-
 }

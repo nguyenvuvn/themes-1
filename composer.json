@@ -15,21 +15,25 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "illuminate/support": "5.3.*",
-    "illuminate/filesystem": "5.3.*",
-    "illuminate/translation": "5.3.*",
-    "illuminate/view": "5.3.*",
-    "illuminate/config": "5.3.*",
-    "ABENEVAUT/laravel-support": "2.3.*",
-    "beelab/bowerphp": "^0.4.0"
+    "illuminate/support": "5.4.*",
+    "illuminate/filesystem": "5.4.*",
+    "illuminate/translation": "5.4.*",
+    "illuminate/view": "5.4.*",
+    "illuminate/config": "5.4.*",
+    "abenevaut/laravel-support": "5.4.*"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.6.*",
-    "laravel/framework": "5.3.*"
+    "phpunit/phpunit": "6.0.*",
+    "laravel/framework": "5.4.*"
   },
   "autoload": {
     "psr-4": {
       "ABENEVAUT\\Themes\\": "src/"
     }
+  },
+  "scripts": {
+    "test": [
+      "vendor/bin/phpunit"
+    ]
   }
 }

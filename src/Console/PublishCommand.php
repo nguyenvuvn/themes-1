@@ -4,10 +4,6 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use ABENEVAUT\Themes\Domain\Themes\Themes\Theme;
 
-/**
- * Class PublishCommand
- * @package ABENEVAUT\Themes\Console
- */
 class PublishCommand extends Command
 {
 
@@ -118,5 +114,4 @@ class PublishCommand extends Command
             ['name', InputArgument::OPTIONAL, 'The name of the theme being used.'],
         ];
     }
-
 }

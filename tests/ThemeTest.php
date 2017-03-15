@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\File;
 use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 use ABENEVAUT\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
 
-/**
- * Class ThemeTest
- */
 class ThemeTest extends TestCase
 {
 
