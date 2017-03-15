@@ -1,4 +1,4 @@
-<?php namespace CVEPDB\Themes\Domain\Themes\Themes\Repositories;
+<?php namespace ABENEVAUT\Themes\Domain\Themes\Themes\Repositories;
 
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\Config\Repository as Config;
@@ -6,11 +6,11 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
 use Illuminate\Translation\Translator;
 use Illuminate\View\Factory;
-use CVEPDB\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
+use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 
 /**
  * Class ThemesRepository
- * @package CVEPDB\Themes\Domain\Themes\Themes\Repositories
+ * @package ABENEVAUT\Themes\Domain\Themes\Themes\Repositories
  */
 class ThemesRepository implements Arrayable
 {
@@ -104,7 +104,7 @@ class ThemesRepository implements Arrayable
 	 *
 	 * @param string $search
 	 *
-	 * @return \CVEPDB\Themes\Domain\Themes\Themes\Theme|null
+	 * @return \ABENEVAUT\Themes\Domain\Themes\Themes\Theme|null
 	 */
 	public function find($search)
 	{

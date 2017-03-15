@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CavaENCOREparlerdebits/themes.svg?branch=master)](https://travis-ci.org/CavaENCOREparlerdebits/themes)
+[![Build Status](https://travis-ci.org/abenevaut/themes.svg?branch=master)](https://travis-ci.org/abenevaut/themes)
 
 # Laravel 5 Themes
 
@@ -8,7 +8,7 @@ Official documentation is located [here](http://laravel5pingpong.blogspot.fr/201
 
 Open your composer.json file, and add the new required package.
 
-    "pingpong/themes": "~2.1"
+    "abenevaut/themes": "5.4.0"
     
 Next, open a terminal and run.
 
@@ -16,11 +16,11 @@ Next, open a terminal and run.
 
 Next, Add new service provider in config/app.php.
 
-    'Pingpong\Themes\ThemesServiceProvider',
+    'ABENEVAUT\Themes\ThemesServiceProvider',
     
 Next, Add new aliases in config/app.php.
     
-    'Theme' => 'Pingpong\Themes\ThemeFacade',
+    'Theme' => 'ABENEVAUT\Themes\ThemeFacade',
     
 Next, publish the package's assets.
 

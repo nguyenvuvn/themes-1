@@ -1,7 +1,7 @@
-<?php namespace CVEPDB\Themes\Domain\Themes\Themes;
+<?php namespace ABENEVAUT\Themes\Domain\Themes\Themes;
 
 use Illuminate\Contracts\Support\Arrayable;
-use CVEPDB\Themes\App\Facades\ThemeFacade;
+use ABENEVAUT\Themes\App\Facades\ThemeFacade;
 
 /**
  * Class Theme

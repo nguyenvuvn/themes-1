@@ -1,10 +1,10 @@
-<?php namespace CVEPDB\Themes\Console;
+<?php namespace ABENEVAUT\Themes\Console;
 
 use Illuminate\Console\Command;
 
 /**
  * Class CacheCommand
- * @package CVEPDB\Themes\Console
+ * @package ABENEVAUT\Themes\Console
  */
 class CacheCommand extends Command
 {

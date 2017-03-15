@@ -1,12 +1,12 @@
-<?php namespace CVEPDB\Themes\Console;
+<?php namespace ABENEVAUT\Themes\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use CVEPDB\Themes\Domain\Themes\Themes\Theme;
+use ABENEVAUT\Themes\Domain\Themes\Themes\Theme;
 
 /**
  * Class PublishCommand
- * @package CVEPDB\Themes\Console
+ * @package ABENEVAUT\Themes\Console
  */
 class PublishCommand extends Command
 {

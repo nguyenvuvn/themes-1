@@ -1,4 +1,4 @@
-<?php namespace CVEPDB\Themes\Console;
+<?php namespace ABENEVAUT\Themes\Console;
 
 use Illuminate\Console\Command;
 use Pingpong\Support\Stub;
@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Class MakeCommand
- * @package CVEPDB\Themes\Console
+ * @package ABENEVAUT\Themes\Console
  */
 class MakeCommand extends Command
 {

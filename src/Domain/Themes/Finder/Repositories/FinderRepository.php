@@ -1,12 +1,12 @@
-<?php namespace CVEPDB\Themes\Domain\Themes\Finder\Repositories;
+<?php namespace ABENEVAUT\Themes\Domain\Themes\Finder\Repositories;
 
 use Pingpong\Support\Json;
 use Symfony\Component\Finder\Finder as SymfonyFinder;
-use CVEPDB\Themes\Domain\Themes\Themes\Theme;
+use ABENEVAUT\Themes\Domain\Themes\Themes\Theme;
 
 /**
  * Class FinderRepository
- * @package CVEPDB\Themes\Domain\Themes\Finder\Repositories
+ * @package ABENEVAUT\Themes\Domain\Themes\Finder\Repositories
  */
 class FinderRepository
 {

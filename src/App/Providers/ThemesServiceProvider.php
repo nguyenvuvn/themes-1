@@ -1,13 +1,13 @@
-<?php namespace CVEPDB\Themes\App\Providers;
+<?php namespace ABENEVAUT\Themes\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\FileViewFinder;
-use CVEPDB\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
-use CVEPDB\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
+use ABENEVAUT\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
+use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
 
 /**
  * Class ThemesServiceProvider
- * @package CVEPDB\Themes\App\Providers
+ * @package ABENEVAUT\Themes\App\Providers
  */
 class ThemesServiceProvider extends ServiceProvider
 {
@@ -109,10 +109,10 @@ class ThemesServiceProvider extends ServiceProvider
 	 */
 	protected function registerCommands()
 	{
-		$this->commands('CVEPDB\Themes\Console\MakeCommand');
-		$this->commands('CVEPDB\Themes\Console\CacheCommand');
-		$this->commands('CVEPDB\Themes\Console\ListCommand');
-		$this->commands('CVEPDB\Themes\Console\PublishCommand');
+		$this->commands('ABENEVAUT\Themes\Console\MakeCommand');
+		$this->commands('ABENEVAUT\Themes\Console\CacheCommand');
+		$this->commands('ABENEVAUT\Themes\Console\ListCommand');
+		$this->commands('ABENEVAUT\Themes\Console\PublishCommand');
 	}
 
 	/**

@@ -1,10 +1,10 @@
-<?php namespace CVEPDB\Themes\App\Facades;
+<?php namespace ABENEVAUT\Themes\App\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class ThemeFacade
- * @package CVEPDB\Themes\App\Facades
+ * @package ABENEVAUT\Themes\App\Facades
  */
 class ThemeFacade extends Facade
 {

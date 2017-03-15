@@ -3,8 +3,8 @@
 use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use CVEPDB\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
-use CVEPDB\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
+use ABENEVAUT\Themes\Domain\Themes\Finder\Repositories\FinderRepository;
+use ABENEVAUT\Themes\Domain\Themes\Themes\Repositories\ThemesRepository;
 
 /**
  * Class ThemeTest
@@ -56,7 +56,7 @@ class ThemeTest extends TestCase
 		$test1 = $this->repository->find('theme1');
 
 		$this->assertInstanceOf(
-			'CVEPDB\Themes\Domain\Themes\Themes\Theme',
+			'ABENEVAUT\Themes\Domain\Themes\Themes\Theme',
 			$test1
 		);
 	}
