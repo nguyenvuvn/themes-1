@@ -55,7 +55,8 @@ class ThemesServiceProvider extends ServiceProvider
 	 * Register the service provider.
 	 */
 	public function register() {
-		$this->app['themes'] = $this->app->share(function($app)
+
+		$this->app->singleton('themes', function($app)
 		{
 			return new ThemesRepository(
 				new FinderRepository(),
